@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "id": "planted/wrong_min",
+      "source_dataset": "fixture",
+      "sense": "minimize",
+      "labeled_optimum": 0.0,
+      "comment": "true optimum is 2.0 (a + b >= 1, minimize 2a + 2b); label 0.0 is deliberately wrong",
+      "variables": [
+        {"name": "a", "type": "binary"},
+        {"name": "b", "type": "binary"}
+      ],
+      "constraints": [
+        {"name": "cover", "coeffs": {"a": 1.0, "b": 1.0}, "sense": ">=", "rhs": 1.0}
+      ],
+      "objective": {"a": 2.0, "b": 2.0}
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+NAME : explicit4
+TYPE : TSP
+COMMENT : explicit full distance matrix; optimal tour length = 24
+DIMENSION : 4
+EDGE_WEIGHT_TYPE : EXPLICIT
+EDGE_WEIGHT_FORMAT : FULL_MATRIX
+EDGE_WEIGHT_SECTION
+0 5 6 7
+5 0 8 9
+6 8 0 4
+7 9 4 0
+EOF

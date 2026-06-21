@@ -1,0 +1,21 @@
+{
+  "items": [
+    {
+      "id": "optibench/planted_wrong",
+      "dataset": "optibench",
+      "natural_language": "Open at least one of two facilities a, b (a + b >= 1), each costing 2, minimizing total cost. The true optimum is 2; this item ships a deliberately wrong labeled_optimum of 5 to exercise quarantine.",
+      "sense": "minimize",
+      "labeled_optimum": 5.0,
+      "model_spec": {
+        "variables": [
+          {"name": "a", "type": "binary"},
+          {"name": "b", "type": "binary"}
+        ],
+        "constraints": [
+          {"name": "open_one", "linear": {"a": 1.0, "b": 1.0}, "sense": ">=", "rhs": 1.0}
+        ],
+        "objective": {"linear": {"a": 2.0, "b": 2.0}, "offset": 0.0}
+      }
+    }
+  ]
+}

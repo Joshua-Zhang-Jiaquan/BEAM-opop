@@ -1,0 +1,5 @@
+# 3 jobs x 3 machines (machine duration pairs in process order)
+3 3
+0 3 1 2 2 2
+0 2 2 1 1 4
+1 4 2 3 0 3

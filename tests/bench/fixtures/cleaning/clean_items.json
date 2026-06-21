@@ -1,0 +1,35 @@
+{
+  "items": [
+    {
+      "id": "clean/knapsack_max",
+      "source_dataset": "fixture",
+      "sense": "maximize",
+      "labeled_optimum": 6.0,
+      "variables": [
+        {"name": "a", "type": "binary"},
+        {"name": "b", "type": "binary"},
+        {"name": "c", "type": "binary"}
+      ],
+      "constraints": [
+        {"name": "cap", "coeffs": {"a": 3.0, "b": 2.0, "c": 1.0}, "sense": "<=", "rhs": 4.0}
+      ],
+      "objective": {"a": 4.0, "b": 3.0, "c": 2.0}
+    },
+    {
+      "id": "clean/cover_min",
+      "source_dataset": "fixture",
+      "sense": "minimize",
+      "labeled_optimum": 3.0,
+      "variables": [
+        {"name": "x", "type": "binary"},
+        {"name": "y", "type": "binary"},
+        {"name": "z", "type": "binary"}
+      ],
+      "constraints": [
+        {"name": "r0", "coeffs": {"x": 1.0, "y": 1.0}, "sense": ">=", "rhs": 1.0},
+        {"name": "r1", "coeffs": {"y": 1.0, "z": 1.0}, "sense": ">=", "rhs": 1.0}
+      ],
+      "objective": {"x": 2.0, "y": 3.0, "z": 4.0}
+    }
+  ]
+}

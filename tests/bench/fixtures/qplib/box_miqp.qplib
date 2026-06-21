@@ -1,0 +1,28 @@
+! opop synthetic QPLIB fixture (MIQP)
+! minimize  (x1-2)^2 + (x2-2)^2  s.t.  x1 + x2 <= 3 ,  x1,x2 integer in [0,3]
+! expanded objective: x1^2 + x2^2 - 4 x1 - 4 x2 + 8
+! known optimum 1 at (x1,x2) = (2,1) or (1,2): (0)+(1) = 1
+opop_box_miqp          name
+QLI                    type (Q objective, L constraints, I integer vars)
+Minimize               objective sense
+2                      number of variables
+1                      number of constraints
+2                      number of objective Hessian entries (lower triangle)
+1 1 2.0                Q0[1,1] = 2 -> 0.5 * 2 * x1^2 = x1^2
+2 2 2.0                Q0[2,2] = 2 -> x2^2
+0.0                    default objective linear coefficient
+2                      number of non-default objective linear coefficients
+1 -4.0                 b0[1]
+2 -4.0                 b0[2]
+8.0                    objective constant
+2                      number of linear constraint coefficients
+1 1 1.0                A[con1][x1] = 1
+1 2 1.0                A[con1][x2] = 1
+-1e20                  default constraint lower bound (-inf)
+0                      number of non-default constraint lower bounds
+3.0                    default constraint upper bound
+0                      number of non-default constraint upper bounds
+0.0                    default variable lower bound
+0                      number of non-default variable lower bounds
+3.0                    default variable upper bound
+0                      number of non-default variable upper bounds

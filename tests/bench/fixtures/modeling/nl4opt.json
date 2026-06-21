@@ -1,0 +1,39 @@
+{
+  "items": [
+    {
+      "id": "nl4opt/production",
+      "dataset": "nl4opt",
+      "natural_language": "A workshop makes products A and B for profit 3 and 5. Cutting needs A + 2B <= 14 hours; assembly needs 3A + 2B <= 18 hours. Maximize profit.",
+      "sense": "maximize",
+      "labeled_optimum": 36.0,
+      "model_spec": {
+        "variables": [
+          {"name": "A", "type": "continuous", "lower": 0.0},
+          {"name": "B", "type": "continuous", "lower": 0.0}
+        ],
+        "constraints": [
+          {"name": "cutting", "linear": {"A": 1.0, "B": 2.0}, "sense": "<=", "rhs": 14.0},
+          {"name": "assembly", "linear": {"A": 3.0, "B": 2.0}, "sense": "<=", "rhs": 18.0}
+        ],
+        "objective": {"linear": {"A": 3.0, "B": 5.0}, "offset": 0.0}
+      }
+    },
+    {
+      "id": "nl4opt/diet",
+      "dataset": "nl4opt",
+      "natural_language": "Buy foods x and y at cost 2 and 3 to get at least 10 units of nutrient (x + y >= 10). No more than 8 of each is available. Minimize cost.",
+      "sense": "minimize",
+      "labeled_optimum": 22.0,
+      "model_spec": {
+        "variables": [
+          {"name": "x", "type": "continuous", "lower": 0.0, "upper": 8.0},
+          {"name": "y", "type": "continuous", "lower": 0.0, "upper": 8.0}
+        ],
+        "constraints": [
+          {"name": "nutrient", "linear": {"x": 1.0, "y": 1.0}, "sense": ">=", "rhs": 10.0}
+        ],
+        "objective": {"linear": {"x": 2.0, "y": 3.0}, "offset": 0.0}
+      }
+    }
+  ]
+}

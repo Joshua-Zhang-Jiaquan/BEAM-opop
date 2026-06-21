@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "id": "optibench/portfolio_miqp",
+      "dataset": "optibench",
+      "natural_language": "Choose integer holdings x1, x2 in [0,3] with x1 + x2 >= 2 that minimize the risk x1^2 + x2^2.",
+      "sense": "minimize",
+      "labeled_optimum": 2.0,
+      "model_spec": {
+        "variables": [
+          {"name": "x1", "type": "integer", "lower": 0.0, "upper": 3.0},
+          {"name": "x2", "type": "integer", "lower": 0.0, "upper": 3.0}
+        ],
+        "constraints": [
+          {"name": "budget", "linear": {"x1": 1.0, "x2": 1.0}, "sense": ">=", "rhs": 2.0}
+        ],
+        "objective": {
+          "linear": {},
+          "offset": 0.0,
+          "quadratic": [["x1", "x1", 1.0], ["x2", "x2", 1.0]]
+        }
+      }
+    },
+    {
+      "id": "optibench/design_minlp",
+      "dataset": "optibench",
+      "natural_language": "Pick an integer count x in [0,5] and a continuous amount y in [0,5] with x + y >= 3, minimizing the convex cost x^2 + y.",
+      "sense": "minimize",
+      "labeled_optimum": 3.0,
+      "model_spec": {
+        "variables": [
+          {"name": "x", "type": "integer", "lower": 0.0, "upper": 5.0},
+          {"name": "y", "type": "continuous", "lower": 0.0, "upper": 5.0}
+        ],
+        "constraints": [
+          {"name": "demand", "linear": {"x": 1.0, "y": 1.0}, "sense": ">=", "rhs": 3.0}
+        ],
+        "objective": {
+          "linear": {"y": 1.0},
+          "offset": 0.0,
+          "nonlinear": [{"func": "square", "var": "x", "coeff": 1.0}]
+        }
+      }
+    }
+  ]
+}
