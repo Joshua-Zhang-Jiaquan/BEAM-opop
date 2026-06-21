@@ -1,0 +1,3 @@
+# Downloaded benchmark instance blobs are fetched on demand + checksum-verified;
+# never commit them. Only download recipes + published checksums live in-repo.
+_cache/

@@ -1,0 +1,14 @@
+name: phase1_smoke
+split: dev
+seeds:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+instance_limit: 5
+solver:
+  name: scip
+budget:
+  trials: 2
+  time_limit_sec: 5
