@@ -1,0 +1,414 @@
+# OPOP benchmark registry -- Phase-1 dev set + Wave-6 held-out MILP suites.
+#
+# GENERATED FILE: produced from the catalogs via
+#   python -m opop.bench.sources.milp_suites --write --reseal
+# Edit the source catalogs (phase1_set / miplib / distributional / milpbench),
+# not this file. split_manifest.lock seals the instance->split assignment;
+# re-sealing requires --reseal.
+#
+# Free splits (dev/validation) come from the Phase-1 families. Held-out splits
+# (test/ood_test) come from MIPLIB 2017, Distributional MIPLIB, MILPBench, the
+# classic CO families (TSP/CVRP/OR-Library/JSP/MaxSAT/MaxCut), the QPLIB MIQP/MIQCP
+# fixtures, and the cleaned modeling-agent datasets (NL4Opt/OptiBench); all phase 6,
+# thesis T3. Each held-out family is its own leakage_group, name-disjoint from the
+# free splits, so no leakage_group spans a free and a held-out split.
+benchmarks:
+- name: synthetic_set_cover_phase1
+  problem_type: MILP
+  source: synthetic
+  split:
+    dev:
+    - synth_set_cover_000
+    - synth_set_cover_001
+    - synth_set_cover_002
+    - synth_set_cover_003
+    - synth_set_cover_004
+    - synth_set_cover_005
+    - synth_set_cover_006
+    validation:
+    - synth_set_cover_007
+    - synth_set_cover_008
+    - synth_set_cover_009
+  license: MIT
+  instance_count: 10
+  time_limit_sec: 30
+  baseline_set: scip_default
+  leakage_group: synthetic_set_cover_phase1
+  checksum: sha256:c9c6b95cbecbdda2cc33aee88709f3a1bfb84e61811d8928299f3a3e1ebbf447
+  phase: 1
+  thesis: T1
+- name: synthetic_knapsack_phase1
+  problem_type: MILP
+  source: synthetic
+  split:
+    dev:
+    - synth_knapsack_000
+    - synth_knapsack_001
+    - synth_knapsack_002
+    - synth_knapsack_003
+    - synth_knapsack_004
+    - synth_knapsack_005
+    - synth_knapsack_006
+    validation:
+    - synth_knapsack_007
+    - synth_knapsack_008
+    - synth_knapsack_009
+  license: MIT
+  instance_count: 10
+  time_limit_sec: 30
+  baseline_set: scip_default
+  leakage_group: synthetic_knapsack_phase1
+  checksum: sha256:a787eb915353fe7d2a34d4bf887b187318f20ff86627603f1def8786582e85b3
+  phase: 1
+  thesis: T1
+- name: synthetic_facility_phase1
+  problem_type: MILP
+  source: synthetic
+  split:
+    dev:
+    - synth_facility_000
+    - synth_facility_001
+    - synth_facility_002
+    - synth_facility_003
+    - synth_facility_004
+    - synth_facility_005
+    - synth_facility_006
+    validation:
+    - synth_facility_007
+    - synth_facility_008
+    - synth_facility_009
+  license: MIT
+  instance_count: 10
+  time_limit_sec: 30
+  baseline_set: scip_default
+  leakage_group: synthetic_facility_phase1
+  checksum: sha256:42210cb43dbcceab5fcf47f678274b2a06f4da08dfac05b71439224888bfd7dc
+  phase: 1
+  thesis: T1
+- name: miplib2017_phase1
+  problem_type: MILP
+  source: miplib2017
+  split:
+    dev:
+    - flugpl
+    - markshare_4_0
+    - markshare_5_0
+    - enlight_hard
+    - noswot
+    - pk1
+    - neos5
+    - gen-ip054
+    validation:
+    - gen-ip016
+    - mas76
+    - gen-ip002
+    - gen-ip036
+  license: MIPLIB2017-public
+  instance_count: 12
+  time_limit_sec: 30
+  baseline_set: scip_default
+  leakage_group: miplib2017_phase1
+  checksum: sha256:5a9d9b12dfeb59158b73ac72c815465065d206ccc6c5c70a62e89c5114cc002d
+  phase: 1
+  thesis: T1
+- name: miplib2017_collection_test
+  problem_type: MILP
+  source: miplib2017
+  split:
+    test:
+    - '22433'
+    - b-ball
+    - dcmulti
+    - gr4x6
+  license: MIPLIB2017-public
+  instance_count: 4
+  time_limit_sec: 300
+  baseline_set: scip_default
+  leakage_group: miplib2017_collection_test
+  checksum: sha256:c2fa6072184299d9467e30467e8f822916cada37c0abbd692389a0c11c6f3138
+  phase: 6
+  thesis: T1
+- name: miplib2017_collection_ood
+  problem_type: MILP
+  source: miplib2017
+  split:
+    ood_test:
+    - assign1-5-8
+    - ran14x18-disj-8
+    - timtab1
+  license: MIPLIB2017-public
+  instance_count: 3
+  time_limit_sec: 300
+  baseline_set: scip_default
+  leakage_group: miplib2017_collection_ood
+  checksum: sha256:4367741da8579f6bb56468cc938d78eefec12ad7a31fe41e5b6f757b6fe35559
+  phase: 6
+  thesis: T1
+- name: dmiplib_MIS
+  problem_type: MILP
+  source: dmiplib
+  split:
+    test:
+    - dmiplib/MIS/easy
+    - dmiplib/MIS/medium
+    ood_test:
+    - dmiplib/MIS/very-hard
+  license: CC-BY-4.0
+  instance_count: 3
+  time_limit_sec: 600
+  baseline_set: scip_default
+  leakage_group: dmiplib_MIS
+  checksum: sha256:36505eb8d46d08abb614ffb5a022293e4220aae9694fb5ba6effc14e85414990
+  phase: 6
+  thesis: T1
+- name: dmiplib_MVC
+  problem_type: MILP
+  source: dmiplib
+  split:
+    test:
+    - dmiplib/MVC/easy
+    - dmiplib/MVC/medium
+    ood_test:
+    - dmiplib/MVC/hard
+    - dmiplib/MVC/very-hard
+  license: CC-BY-4.0
+  instance_count: 4
+  time_limit_sec: 600
+  baseline_set: scip_default
+  leakage_group: dmiplib_MVC
+  checksum: sha256:55b0a71cfcd6fe8f62e15135f8fe2d340f7cebb44d12c5d1c0801d8fbd9cc293
+  phase: 6
+  thesis: T1
+- name: dmiplib_SC
+  problem_type: MILP
+  source: dmiplib
+  split:
+    test:
+    - dmiplib/SC/easy
+    - dmiplib/SC/medium
+    ood_test:
+    - dmiplib/SC/hard
+    - dmiplib/SC/very-hard
+  license: CC-BY-4.0
+  instance_count: 4
+  time_limit_sec: 600
+  baseline_set: scip_default
+  leakage_group: dmiplib_SC
+  checksum: sha256:92429adbda9f79caddbcbaab3018971da2bd33beb424bedf2b5478f48f331186
+  phase: 6
+  thesis: T1
+- name: dmiplib_CA
+  problem_type: MILP
+  source: dmiplib
+  split:
+    test:
+    - dmiplib/CA/medium
+    ood_test:
+    - dmiplib/CA/very-hard
+  license: CC-BY-4.0
+  instance_count: 2
+  time_limit_sec: 600
+  baseline_set: scip_default
+  leakage_group: dmiplib_CA
+  checksum: sha256:d61f5ffe0f4b6f686b6bfec7fba96d94b186f375b9d8d3143c0da12916146a6a
+  phase: 6
+  thesis: T1
+- name: dmiplib_GISP
+  problem_type: MILP
+  source: dmiplib
+  split:
+    test:
+    - dmiplib/GISP/easy
+    - dmiplib/GISP/medium
+    ood_test:
+    - dmiplib/GISP/hard
+    - dmiplib/GISP/very-hard
+    - dmiplib/GISP/ext-hard
+  license: CC-BY-4.0
+  instance_count: 5
+  time_limit_sec: 600
+  baseline_set: scip_default
+  leakage_group: dmiplib_GISP
+  checksum: sha256:45a855a4dc66f2bec0764111cbca7417ec0d1c3e4a43ec8ea35994bbe32944aa
+  phase: 6
+  thesis: T1
+- name: dmiplib_IP
+  problem_type: MILP
+  source: dmiplib
+  split:
+    ood_test:
+    - dmiplib/IP/very-hard
+  license: CC-BY-4.0
+  instance_count: 1
+  time_limit_sec: 600
+  baseline_set: scip_default
+  leakage_group: dmiplib_IP
+  checksum: sha256:1f618c29928999f2270f777d2189a82bb7755de3721152ad871bbbab0b354cad
+  phase: 6
+  thesis: T1
+- name: milpbench_knapsack
+  problem_type: MILP
+  source: milpbench
+  split:
+    ood_test:
+    - milpbench/knapsack/instance_46
+    - milpbench/knapsack/instance_152
+    - milpbench/knapsack/instance_270
+    - milpbench/knapsack/instance_864
+    - milpbench/knapsack/instance_875
+  license: Apache-2.0
+  instance_count: 5
+  time_limit_sec: 900
+  baseline_set: scip_default
+  leakage_group: milpbench_knapsack
+  checksum: sha256:8e64e4f9f396cc65d7648484a1efc8a0ccc37045a31beb769473543d3f39c60a
+  phase: 6
+  thesis: T1
+- name: classic_tsp
+  problem_type: TSP
+  source: tsplib
+  split:
+    test:
+    - classic/tsp/tiny4
+    - classic/tsp/explicit4
+  license: TSPLIB
+  instance_count: 2
+  time_limit_sec: 300
+  baseline_set: scip_default
+  leakage_group: classic_tsp
+  checksum: sha256:61161b8dfb731a866dd7a2283c7bd61b8b887072e352c42f20b1372330f86443
+  phase: 6
+  thesis: T3
+- name: classic_cvrp
+  problem_type: CVRP
+  source: cvrplib
+  split:
+    test:
+    - classic/cvrp/tiny5
+    - classic/cvrp/small6
+  license: CVRPLIB
+  instance_count: 2
+  time_limit_sec: 300
+  baseline_set: scip_default
+  leakage_group: classic_cvrp
+  checksum: sha256:e956c7ff2ba64941c7f669bee529d95482163c8bfbdd0b65dccda5814aed5cc1
+  phase: 6
+  thesis: T3
+- name: classic_orlib_scp
+  problem_type: SCP
+  source: or-library
+  split:
+    test:
+    - classic/orlib/scp_tiny
+    - classic/orlib/scp_small
+  license: OR-Library
+  instance_count: 2
+  time_limit_sec: 300
+  baseline_set: scip_default
+  leakage_group: classic_orlib_scp
+  checksum: sha256:d01b738051a84bd30ddfd2245956c3949414df05ef47580ffe4ea6d7246081d2
+  phase: 6
+  thesis: T3
+- name: classic_jsp
+  problem_type: JSP
+  source: jsplib
+  split:
+    test:
+    - classic/jsp/jsp2x2
+    - classic/jsp/jsp3x3
+  license: JSPLIB
+  instance_count: 2
+  time_limit_sec: 300
+  baseline_set: scip_default
+  leakage_group: classic_jsp
+  checksum: sha256:a9d5e16c2161b47abe29fbd0ab48fb2b16139dc3a12891f58d84a854dabd3953
+  phase: 6
+  thesis: T3
+- name: classic_maxsat
+  problem_type: MaxSAT
+  source: maxsat
+  split:
+    test:
+    - classic/maxsat/tiny
+    - classic/maxsat/small
+  license: MaxSAT-Evaluations
+  instance_count: 2
+  time_limit_sec: 300
+  baseline_set: scip_default
+  leakage_group: classic_maxsat
+  checksum: sha256:5da66e756ef0db5a232f8ed522d6808bf483de6ad5410505afa3ed2e54af77a5
+  phase: 6
+  thesis: T3
+- name: classic_maxcut
+  problem_type: MaxCut
+  source: maxcut
+  split:
+    test:
+    - classic/maxcut/triangle
+    - classic/maxcut/square
+  license: Gset/BiqMac
+  instance_count: 2
+  time_limit_sec: 300
+  baseline_set: scip_default
+  leakage_group: classic_maxcut
+  checksum: sha256:96fdf16c8ea3bca721664f814903c7f1882cded0224f20ea08ded1bba8859bdf
+  phase: 6
+  thesis: T3
+- name: qplib_miqcp_tiny
+  problem_type: MIQCP
+  source: qplib
+  split:
+    test:
+    - qplib/ball_miqcp
+  license: MIT
+  instance_count: 1
+  time_limit_sec: 300
+  baseline_set: scip_default
+  leakage_group: qplib_miqcp_tiny
+  checksum: sha256:e31c9123c760c8936cd1fe660fcd391c5eeb867894a994268259eeb7524da1fd
+  phase: 6
+  thesis: T3
+- name: qplib_miqp_tiny
+  problem_type: MIQP
+  source: qplib
+  split:
+    test:
+    - qplib/box_miqp
+  license: MIT
+  instance_count: 1
+  time_limit_sec: 300
+  baseline_set: scip_default
+  leakage_group: qplib_miqp_tiny
+  checksum: sha256:3984964c44fc6d586b9ca55f3d31d3ce1bee81f3eb59f99cfcf5abe0cdcb00f0
+  phase: 6
+  thesis: T3
+- name: modeling_nl4opt_cleaned
+  problem_type: MILP
+  source: modeling_agent
+  split:
+    test:
+    - nl4opt/production
+    - nl4opt/diet
+  license: MIT
+  instance_count: 2
+  time_limit_sec: 300
+  baseline_set: scip_default
+  leakage_group: modeling_nl4opt_cleaned
+  checksum: sha256:b6aa74a56a261736a3ba9a9305316c3c4f4a780eac16fbc72cd0df58380291b3
+  phase: 6
+  thesis: T3
+- name: modeling_optibench_cleaned
+  problem_type: MINLP
+  source: modeling_agent
+  split:
+    test:
+    - optibench/portfolio_miqp
+    - optibench/design_minlp
+  license: MIT
+  instance_count: 2
+  time_limit_sec: 300
+  baseline_set: scip_default
+  leakage_group: modeling_optibench_cleaned
+  checksum: sha256:d387bae21894c3291baa405d37bde7bb509cf03bb5809ec7f94f7468a7e1cd52
+  phase: 6
+  thesis: T3
