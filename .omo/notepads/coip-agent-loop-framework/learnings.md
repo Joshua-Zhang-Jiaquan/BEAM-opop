@@ -3006,3 +3006,27 @@ real opop/baseline runners + a tiny local sweep.
 - `pytest tests/` — 782 passed, 11 skipped (expected: smac/botorch/gcg absent)
 - `ruff check src tests` — all checks passed
 - `mypy src/opop` — success, no issues in 114 source files
+
+## GitHub Repository Creation
+
+- Repository: https://github.com/Joshua-Zhang-Jiaquan/opop
+- Visibility: public
+- Default branch: main
+- Remote: origin -> https://github.com/Joshua-Zhang-Jiaquan/opop.git
+- Initial push: 8 commits, clean working tree
+- Commits:
+  1. chore: initialize project with tooling and docs scaffolding
+  2. chore: add benchmark registry and smoke configuration
+  3. feat: add core foundation modules (model, solver, evaluator, llm)
+  4. feat: add agent loop modules (analyzer, proposer, verifier, controller, orchestrator)
+  5. feat: add benchmark registry, experiments, eval, and leaderboard
+  6. test: add full pytest suite and fixtures
+  7. docs: add documentation, examples, and report/paper scripts
+  8. docs: add project plan and notepad learnings
+- .gitignore updated to exclude build artifacts, venvs, egg-info, and session state files.
+
+## GitHub Repository Rename
+
+- Renamed from `opop` to `BEAM-opop` to reflect the BEAM series naming.
+- New URL: https://github.com/Joshua-Zhang-Jiaquan/BEAM-opop
+- Local remote updated: origin -> https://github.com/Joshua-Zhang-Jiaquan/BEAM-opop.git
