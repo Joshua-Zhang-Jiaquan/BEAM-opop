@@ -1,0 +1,49 @@
+# OPOP — pinned dependencies
+# Python 3.12
+
+# --- Core ---
+numpy==1.26.4
+scipy==1.14.1
+networkx==3.5
+# torch pinned to installed; use torch==2.8.0a0+... for the local build
+torch
+python-dotenv==1.2.2
+requests==2.32.3
+pyyaml==6.0.3
+
+# --- Solvers --- (open-only; task-3 confirmed + smoke-tested on Python 3.12.3)
+# SCIP 10.0.2 engine + SoPlex 8.0.2 LP solver bundled in the wheel (no system SCIP needed).
+pyscipopt==6.2.1
+# OR-Tools CP-SAT (snake_case API). 9.14.x is the last line compatible with numpy<2 (held at
+# 1.26.4 for the local torch build); ortools>=9.15 needs numpy>=2. Pulls protobuf<6.32 -> 6.31.1.
+ortools==9.14.6206
+# HiGHS 1.14.0 LP/MILP binding. No module __version__; query Highs().version().
+highspy==1.14.0
+# CBC 2.10.3 ships bundled inside PuLP (no separate cbc/cylp/system build needed).
+pulp==3.2.1
+# Deliberately ABSENT (open-only guardrail; see docs/design/solver-stack.md):
+#   gurobipy  — commercial; MIPLearn 0.4.3 hard-requires gurobipy>=12,<13 -> design ref only.
+#   ecole     — 0.8.1 builds against SCIP 8 ABI; conflicts with bundled SCIP 10. No hard dep.
+
+# --- Bayesian Optimization ---
+# pin pending task-3 spike
+botorch==0.17.2
+# pin pending task-3 spike
+gpytorch
+# pin pending task-3 spike
+ax-platform
+# pin pending task-3 spike
+smac==2.2.0
+# pin pending task-3 spike
+ConfigSpace
+
+# --- LLM ---
+openai==2.38.0
+
+# --- Testing ---
+pytest==8.3.3
+
+# --- Quality ---
+ruff==0.15.18
+mypy==2.1.0
+pylint==3.3.1

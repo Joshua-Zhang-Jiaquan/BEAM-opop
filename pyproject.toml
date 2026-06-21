@@ -1,0 +1,116 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opop"
+version = "0.1.0"
+description = "Bayesian-guided, solver-in-the-loop, symbolically-verified formulation-and-search engine for combinatorial optimization and integer programming."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "OPOP Authors" }]
+keywords = [
+    "combinatorial-optimization",
+    "integer-programming",
+    "mixed-integer-programming",
+    "bayesian-optimization",
+    "milp",
+    "operations-research",
+    "scip",
+    "solver",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Typing :: Typed",
+]
+# Core runtime deps (Core/Solvers/LLM of requirements.txt). torch is required
+# by the Phase-1 GP surrogate (opop.controller.gp), so it is a core dependency.
+# If your environment has a non-PyPI torch wheel, pre-install it before `pip install .`.
+# Open solvers only: Gurobi is ABSENT from every install path.
+dependencies = [
+    "numpy>=1.26,<2.0",
+    "scipy>=1.14",
+    "networkx>=3.5",
+    "torch",
+    "python-dotenv>=1.0",
+    "requests>=2.32",
+    "pyyaml>=6.0",
+    "openai>=2.0",
+    "pyscipopt>=6.2,<7",
+    "ortools>=9.14,<9.15",
+    "highspy>=1.14",
+    "pulp>=3.2",
+]
+
+[project.optional-dependencies]
+# Wave-4 ladder backends (structured / SMAC / TPE). Install with
+# `pip install ".[bo]"` for the full controller ladder beyond Phase-1.
+bo = [
+    "botorch>=0.17",
+    "gpytorch",
+    "ax-platform",
+    "smac>=2.2",
+    "ConfigSpace",
+]
+# Test + lint + type-check toolchain (pinned in requirements.txt).
+dev = [
+    "pytest>=8.3",
+    "ruff>=0.15",
+    "mypy>=2.1",
+    "pylint>=3.3",
+]
+
+[project.scripts]
+opop = "opop.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"opop.bench.data" = ["*.yaml", "*.lock"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra"
+testpaths = ["tests"]
+norecursedirs = [
+    ".omo",
+    ".venv",
+    "__pycache__",
+    "runs",
+    "benchmarks",
+    ".ruff_cache",
+    ".pytest_cache",
+]
+markers = [
+    "smoke: CPU-safe unit tests",
+    "integration: tests requiring external services or pre-built data",
+    "gpu: tests requiring GPU execution",
+    "slow: long-running tests excluded from smoke policy",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+
+[tool.basedpyright]
+pythonVersion = "3.12"
+extraPaths = ["src"]
+# Project type checker is mypy; keep basedpyright focused on import resolution and
+# avoid noisy strict-mode diagnostics that are not enforced by the project config.
+reportExplicitAny = "none"
+reportAny = "none"
+reportUnknownVariableType = "none"
+reportUnknownMemberType = "none"
+reportUnusedCallResult = "none"
